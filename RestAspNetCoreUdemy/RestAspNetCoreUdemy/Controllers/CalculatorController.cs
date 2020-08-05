@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RestAspNetCoreUdemy.Util;
 
 namespace RestAspNetCoreUdemy.Controllers
 {
@@ -15,9 +16,9 @@ namespace RestAspNetCoreUdemy.Controllers
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            if (UtilNumber.IsNumeric(firstNumber) && UtilNumber.IsNumeric(secondNumber))
             {
-                var sum = ConvertToDescimal(firstNumber) + ConvertToDescimal(secondNumber);
+                var sum = UtilNumber.ConvertToDescimal(firstNumber) + UtilNumber.ConvertToDescimal(secondNumber);
                 return Ok(sum.ToString());
             }
 
@@ -28,9 +29,9 @@ namespace RestAspNetCoreUdemy.Controllers
         [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
         public IActionResult Subtraction(string firstNumber, string secondNumber)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            if (UtilNumber.IsNumeric(firstNumber) && UtilNumber.IsNumeric(secondNumber))
             {
-                var sum = ConvertToDescimal(firstNumber) - ConvertToDescimal(secondNumber);
+                var sum = UtilNumber.ConvertToDescimal(firstNumber) - UtilNumber.ConvertToDescimal(secondNumber);
                 return Ok(sum.ToString());
             }
 
@@ -41,9 +42,9 @@ namespace RestAspNetCoreUdemy.Controllers
         [HttpGet("division/{firstNumber}/{secondNumber}")]
         public IActionResult Division(string firstNumber, string secondNumber)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            if (UtilNumber.IsNumeric(firstNumber) && UtilNumber.IsNumeric(secondNumber))
             {
-                var sum = ConvertToDescimal(firstNumber) / ConvertToDescimal(secondNumber);
+                var sum = UtilNumber.ConvertToDescimal(firstNumber) / UtilNumber.ConvertToDescimal(secondNumber);
                 return Ok(sum.ToString());
             }
 
@@ -54,34 +55,13 @@ namespace RestAspNetCoreUdemy.Controllers
         [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
         public IActionResult Multiplication(string firstNumber, string secondNumber)
         {
-            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            if (UtilNumber.IsNumeric(firstNumber) && UtilNumber.IsNumeric(secondNumber))
             {
-                var sum = ConvertToDescimal(firstNumber) * ConvertToDescimal(secondNumber);
+                var sum = UtilNumber.ConvertToDescimal(firstNumber) * UtilNumber.ConvertToDescimal(secondNumber);
                 return Ok(sum.ToString());
             }
 
             return BadRequest("Invalid input.");
-        }
-
-        private decimal ConvertToDescimal(string number)
-        {
-            decimal decimalValue;
-            if (Decimal.TryParse(number, out decimalValue))
-                return decimalValue;
-            return 0;
-        }
-
-        private bool IsNumeric(string number)
-        {
-            double numberDouble;
-
-            bool isNumber = Double.TryParse(
-                number, 
-                System.Globalization.NumberStyles.Any, 
-                System.Globalization.NumberFormatInfo.InvariantInfo, 
-                out numberDouble);
-
-            return isNumber;
-        }
+        }        
     }
 }
