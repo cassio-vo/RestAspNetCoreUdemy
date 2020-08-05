@@ -11,13 +11,52 @@ namespace RestAspNetCoreUdemy.Controllers
     [Route("[controller]")]
     public class CalculatorController : ControllerBase
     {
-        //Get Api/values/5/5
-        [HttpGet("{firstNumber}/{secondNumber}")]
+        //Get Api/sum/5/5
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
         public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
                 var sum = ConvertToDescimal(firstNumber) + ConvertToDescimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+
+            return BadRequest("Invalid input.");
+        }
+
+        //Get Api/subtraction/5/5
+        [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDescimal(firstNumber) - ConvertToDescimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+
+            return BadRequest("Invalid input.");
+        }
+
+        //Get Api/subtraction/5/5
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDescimal(firstNumber) / ConvertToDescimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+
+            return BadRequest("Invalid input.");
+        }
+
+        //Get Api/subtraction/5/5
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDescimal(firstNumber) * ConvertToDescimal(secondNumber);
                 return Ok(sum.ToString());
             }
 
