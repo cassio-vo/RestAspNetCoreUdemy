@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RestAspNetCoreUdemy_Verbos.Service;
+using RestAspNetCoreUdemy_Verbos.Service.Implmentations;
 
 namespace RestAspNetCoreUdemy_Verbos
 {
@@ -26,6 +28,8 @@ namespace RestAspNetCoreUdemy_Verbos
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IPersonService, PersonServiceImplementation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
