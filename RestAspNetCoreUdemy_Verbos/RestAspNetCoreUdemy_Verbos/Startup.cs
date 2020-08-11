@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RestAspNetCoreUdemy_Verbos.Model.Context;
 using RestAspNetCoreUdemy_Verbos.Service;
 using RestAspNetCoreUdemy_Verbos.Service.Implmentations;
 
@@ -27,6 +29,9 @@ namespace RestAspNetCoreUdemy_Verbos
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var conection = Configuration["MySqlConnection:MySqlConnectionString"];
+            services.AddDbContext<MySqlContext>(options => options.UseMySql(conection));
+
             services.AddControllers();
 
             services.AddScoped<IPersonService, PersonServiceImplementation>();
