@@ -97,4 +97,6 @@ D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspN
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\MySqlConnector.dll
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\Pomelo.EntityFrameworkCore.MySql.dll
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\Pomelo.JsonObject.dll
+D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.Versioning.dll
+D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\obj\Debug\netcoreapp3.1\RestAspNetCoreUdemy_Verbos.MvcApplicationPartsAssemblyInfo.cs
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\obj\Debug\netcoreapp3.1\RestAspNetCoreUdemy_Verbos.MvcApplicationPartsAssemblyInfo.cache

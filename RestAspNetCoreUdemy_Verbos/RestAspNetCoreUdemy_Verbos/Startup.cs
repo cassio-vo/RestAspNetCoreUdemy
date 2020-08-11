@@ -33,6 +33,7 @@ namespace RestAspNetCoreUdemy_Verbos
             services.AddDbContext<MySqlContext>(options => options.UseMySql(conection));
 
             services.AddControllers();
+            services.AddApiVersioning();
 
             services.AddScoped<IPersonService, PersonServiceImplementation>();
         }

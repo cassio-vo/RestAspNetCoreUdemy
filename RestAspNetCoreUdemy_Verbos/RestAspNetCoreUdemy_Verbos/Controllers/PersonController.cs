@@ -9,7 +9,8 @@ using RestAspNetCoreUdemy_Verbos.Service;
 
 namespace RestAspNetCoreUdemy_Verbos.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiversion}")]
+    [ApiVersion("1")]
     [ApiController]
     public class PersonController : ControllerBase
     {
