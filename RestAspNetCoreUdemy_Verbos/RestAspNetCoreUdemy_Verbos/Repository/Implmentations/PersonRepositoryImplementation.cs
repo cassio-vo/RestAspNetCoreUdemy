@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RestAspNetCoreUdemy_Verbos.Service.Implmentations
+namespace RestAspNetCoreUdemy_Verbos.Repository.Implmentations
 {
-    public class PersonServiceImplementation : IPersonService
+    public class PersonRepositoryImplementation : IPersonRepository
     {
         private MySqlContext _context;
 
-        public PersonServiceImplementation(MySqlContext context)
+        public PersonRepositoryImplementation(MySqlContext context)
         {
             _context = context;
         }
@@ -80,7 +80,7 @@ namespace RestAspNetCoreUdemy_Verbos.Service.Implmentations
             return person;
         }
 
-        private bool Exist(long id)
+        public bool Exist(long id)
         {
             return _context.Persons.Any(p => p.Id == id);
         }

@@ -1,46 +1,78 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+
+using RestAspNetCoreUdemy_Verbos.Business;
+using RestAspNetCoreUdemy_Verbos.Business.Implmentations;
 using RestAspNetCoreUdemy_Verbos.Model.Context;
-using RestAspNetCoreUdemy_Verbos.Service;
-using RestAspNetCoreUdemy_Verbos.Service.Implmentations;
+using RestAspNetCoreUdemy_Verbos.Repository;
+using RestAspNetCoreUdemy_Verbos.Repository.Implmentations;
+
 
 namespace RestAspNetCoreUdemy_Verbos
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public IConfiguration _configuration { get; }
+        public IWebHostEnvironment _environment { get; }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        {
+            _configuration = configuration;
+            _environment = environment;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var conection = Configuration["MySqlConnection:MySqlConnectionString"];
-            services.AddDbContext<MySqlContext>(options => options.UseMySql(conection));
+            services.AddTransient(typeof(ILogger<>), (typeof(Logger<>)));
+
+            var conectionString = _configuration["MySqlConnection:MySqlConnectionString"];
+            services.AddDbContext<MySqlContext>(options => options.UseMySql(conectionString));
+
+            if (_environment.IsDevelopment())
+
+            {
+                try
+                {
+                    var evolveConection = new MySql.Data.MySqlClient.MySqlConnection(conectionString);
+
+                    var evolve = new Evolve.Evolve(evolveConection)
+                    {
+                        Locations = new List<string> { "db/Migrations" },
+                        IsEraseDisabled = true
+                    };
+
+                    evolve.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
 
             services.AddControllers();
             services.AddApiVersioning();
 
-            services.AddScoped<IPersonService, PersonServiceImplementation>();
+            services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+            services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            var logger = serviceProvider.GetService<ILogger<Startup>>();
+            services.AddSingleton(typeof(ILogger), logger);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestAspNetCoreUdemy_Verbos.Model;
-using RestAspNetCoreUdemy_Verbos.Service;
+using RestAspNetCoreUdemy_Verbos.Business;
 
 namespace RestAspNetCoreUdemy_Verbos.Controllers
 {
@@ -14,25 +14,25 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        IPersonService _personService;
+        IPersonBusiness _personBusiness;
 
-        public PersonController(IPersonService personService)
+        public PersonController(IPersonBusiness personService)
         {
-            _personService = personService;
+            _personBusiness = personService;
         }
 
         // GET: api/Person
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_personService.FindAll());
+            return Ok(_personBusiness.FindAll());
         }
 
         // GET: api/Person/5
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            var person = _personService.FindById(id);
+            var person = _personBusiness.FindById(id);
             if (person == null)
                 return NotFound();
 
@@ -46,7 +46,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
             if (person == null)
                 return NotFound();
 
-            return new ObjectResult(_personService.Create(person));
+            return new ObjectResult(_personBusiness.Create(person));
         }
 
         // PUT: api/Person/5
@@ -56,14 +56,14 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
             if (person == null)
                 return NotFound();
 
-            return new ObjectResult(_personService.Update(person));
+            return new ObjectResult(_personBusiness.Update(person));
         }
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _personService.Delete(id);
+            _personBusiness.Delete(id);
             return NoContent();
         }
     }

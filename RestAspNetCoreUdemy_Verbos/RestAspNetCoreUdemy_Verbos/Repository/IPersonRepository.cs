@@ -1,9 +1,9 @@
 ﻿using RestAspNetCoreUdemy_Verbos.Model;
 using System.Collections.Generic;
 
-namespace RestAspNetCoreUdemy_Verbos.Service
+namespace RestAspNetCoreUdemy_Verbos.Repository
 {
-    public interface IPersonService
+    public interface IPersonRepository
     {
         Person Create(Person person);
 
@@ -14,5 +14,7 @@ namespace RestAspNetCoreUdemy_Verbos.Service
         Person Update(Person person);
 
         void Delete(long Id);
+
+        bool Exist(long id);
     }
 }
