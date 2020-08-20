@@ -14,7 +14,7 @@ using RestAspNetCoreUdemy_Verbos.Business.Implmentations;
 using RestAspNetCoreUdemy_Verbos.Model.Context;
 using RestAspNetCoreUdemy_Verbos.Repository;
 using RestAspNetCoreUdemy_Verbos.Repository.Implmentations;
-
+using RestAspNetCoreUdemy_Verbos.Repository.Generic;
 
 namespace RestAspNetCoreUdemy_Verbos
 {
@@ -62,7 +62,10 @@ namespace RestAspNetCoreUdemy_Verbos
             services.AddApiVersioning();
 
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
+            services.AddScoped<IBookBusiness, BookBusinessImplementation> ();
+
             services.AddScoped<IPersonRepository, PersonRepositoryImplementation>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
             var serviceProvider = services.BuildServiceProvider();
             var logger = serviceProvider.GetService<ILogger<Startup>>();

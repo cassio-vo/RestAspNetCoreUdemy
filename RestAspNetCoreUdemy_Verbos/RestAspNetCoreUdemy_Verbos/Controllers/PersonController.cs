@@ -22,14 +22,14 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         }
 
         // GET: api/Person
-        [HttpGet]
+        [HttpGet(Name = "GetAllPersons")]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
         }
 
         // GET: api/Person/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetPersons")]
         public IActionResult Get(int id)
         {
             var person = _personBusiness.FindById(id);
@@ -40,7 +40,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         }
 
         // POST: api/Person
-        [HttpPost]
+        [HttpPost(Name = "CreatePerson")]
         public IActionResult Post([FromBody] Person person)
         {
             if (person == null)
@@ -50,7 +50,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         }
 
         // PUT: api/Person/5
-        [HttpPut("{id}")]
+        [HttpPut("{id}", Name = "UpdatePerson")]
         public IActionResult Put(int id, [FromBody] Person person)
         {
             if (person == null)
@@ -60,7 +60,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}", Name = "DeletePerson")]
         public IActionResult Delete(int id)
         {
             _personBusiness.Delete(id);

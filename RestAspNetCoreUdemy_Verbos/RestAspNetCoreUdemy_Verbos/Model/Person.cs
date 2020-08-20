@@ -1,14 +1,13 @@
-﻿using System;
+﻿using RestAspNetCoreUdemy_Verbos.Model.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RestAspNetCoreUdemy_Verbos.Model
 {
-    public class Person
+    public class Person : BaseEntity
     {
-        public long Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
