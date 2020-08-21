@@ -1,6 +1,9 @@
-﻿using RestAspNetCoreUdemy_Verbos.Model;
+﻿using RestAspNetCoreUdemy_Verbos.Data.Converters;
+using RestAspNetCoreUdemy_Verbos.Data.VO;
+using RestAspNetCoreUdemy_Verbos.Model;
 using RestAspNetCoreUdemy_Verbos.Model.Context;
 using RestAspNetCoreUdemy_Verbos.Repository;
+using RestAspNetCoreUdemy_Verbos.Repository.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,38 +13,40 @@ namespace RestAspNetCoreUdemy_Verbos.Business.Implmentations
 {
     public class PersonBusinessImplementation : IPersonBusiness
     {
-        private IPersonRepository _personRepository;
+        private IRepository<Person> _repository;
+        private readonly PersonConverter _converter;
 
-        public PersonBusinessImplementation(IPersonRepository personRepository)
+        public PersonBusinessImplementation(IRepository<Person> repository)
         {
-            _personRepository = personRepository;
+            _repository = repository;
+            _converter = new PersonConverter();
         }
 
-        public Person Create(Person person)
+        public PersonVO Create(PersonVO personVO)
         {
-            return _personRepository.Create(person);
+            return _converter.Parse(_repository.Create(_converter.Parse(personVO)));
         }
 
         public void Delete(long id)
         {
-            _personRepository.Delete(id);
+            _repository.Delete(id);
 
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _personRepository.FindAll();
+            return _converter.ParseList(_repository.FindAll());
         }
 
 
-        public Person FindById(long id)
+        public PersonVO FindById(long id)
         {
-            return _personRepository.FindById(id);
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO personVO)
         {
-            return _personRepository.Update(person);
+            return _converter.Parse(_repository.Update(_converter.Parse(personVO)));
         }
     }
 }

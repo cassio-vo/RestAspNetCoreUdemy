@@ -1,17 +1,17 @@
-﻿using RestAspNetCoreUdemy_Verbos.Model;
+﻿using RestAspNetCoreUdemy_Verbos.Data.VO;
 using System.Collections.Generic;
 
 namespace RestAspNetCoreUdemy_Verbos.Business
 {
     public interface IPersonBusiness
     {
-        Person Create(Person person);
+        PersonVO Create(PersonVO personVO);
 
-        Person FindById(long Id);
+        PersonVO FindById(long Id);
 
-        List<Person> FindAll();
+        List<PersonVO> FindAll();
 
-        Person Update(Person person);
+        PersonVO Update(PersonVO personVO);
 
         void Delete(long Id);
     }
