@@ -52,7 +52,7 @@ namespace RestAspNetCoreUdemy_Verbos.Repository.Generic
             }
         }
 
-        public bool Exist(long id)
+        public bool Exist(long? id)
         {
             return _dataSet.Any(p => p.Id == id);
         }
@@ -62,7 +62,7 @@ namespace RestAspNetCoreUdemy_Verbos.Repository.Generic
             return _dataSet.ToList<T>();
         }
 
-        public T FindById(long id)
+        public T FindById(long? id)
         {
             return _dataSet.SingleOrDefault(x => x.Id == id);
         }

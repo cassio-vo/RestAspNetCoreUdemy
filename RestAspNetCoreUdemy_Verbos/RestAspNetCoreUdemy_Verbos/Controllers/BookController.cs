@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RestAspNetCoreUdemy_Verbos.Business;
+using RestAspNetCoreUdemy_Verbos.Data.VO;
 using RestAspNetCoreUdemy_Verbos.Model;
 
 namespace RestAspNetCoreUdemy_Verbos.Controllers
@@ -37,14 +38,14 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // POST: api/Books
         [HttpPost( Name = "CreateBook")]
-        public IActionResult Post([FromBody] Book book)
+        public IActionResult Post([FromBody] BookVO book)
         {
             return Ok(_bookBusiness.Create(book));
         }
 
         // PUT: api/Books/5
         [HttpPut("{id}", Name = "UpdateBook")]
-        public IActionResult Put(int id, [FromBody] Book book)
+        public IActionResult Put(int id, [FromBody] BookVO book)
         {
             return Ok(_bookBusiness.Update(book));
         }

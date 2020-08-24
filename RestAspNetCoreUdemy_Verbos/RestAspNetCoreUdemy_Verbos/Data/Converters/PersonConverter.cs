@@ -30,8 +30,6 @@ namespace RestAspNetCoreUdemy_Verbos.Data.Converters
                 return null;
             else
                 return origin.Select(x => Parse(x)).ToList();
-
-            throw new NotImplementedException();
         }
 
         public PersonVO Parse(Person origin)
@@ -55,8 +53,6 @@ namespace RestAspNetCoreUdemy_Verbos.Data.Converters
                 return null;
             else
                 return origin.Select(x => Parse(x)).ToList();
-
-            throw new NotImplementedException();
         }
     }
 }

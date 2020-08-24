@@ -1,13 +1,8 @@
 ﻿using RestAspNetCoreUdemy_Verbos.Data.Converters;
 using RestAspNetCoreUdemy_Verbos.Data.VO;
 using RestAspNetCoreUdemy_Verbos.Model;
-using RestAspNetCoreUdemy_Verbos.Model.Context;
-using RestAspNetCoreUdemy_Verbos.Repository;
 using RestAspNetCoreUdemy_Verbos.Repository.Generic;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestAspNetCoreUdemy_Verbos.Business.Implmentations
 {

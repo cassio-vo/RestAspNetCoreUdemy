@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using RestAspNetCoreUdemy_Verbos.Model;
+﻿using Microsoft.AspNetCore.Mvc;
 using RestAspNetCoreUdemy_Verbos.Business;
+using RestAspNetCoreUdemy_Verbos.Data.VO;
 
 namespace RestAspNetCoreUdemy_Verbos.Controllers
 {
@@ -41,7 +36,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // POST: api/Person
         [HttpPost(Name = "CreatePerson")]
-        public IActionResult Post([FromBody] Person person)
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null)
                 return NotFound();
@@ -51,7 +46,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // PUT: api/Person/5
         [HttpPut("{id}", Name = "UpdatePerson")]
-        public IActionResult Put(int id, [FromBody] Person person)
+        public IActionResult Put(int id, [FromBody] PersonVO person)
         {
             if (person == null)
                 return NotFound();

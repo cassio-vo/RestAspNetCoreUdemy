@@ -10,7 +10,7 @@ namespace RestAspNetCoreUdemy_Verbos.Repository.Generic
     {
         T Create(T item);
 
-        T FindById(long Id);
+        T FindById(long? Id);
 
         List<T> FindAll();
 
@@ -18,6 +18,6 @@ namespace RestAspNetCoreUdemy_Verbos.Repository.Generic
 
         void Delete(long Id);
 
-        bool Exist(long id);
+        bool Exist(long? id);
     }
 }

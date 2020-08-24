@@ -1,17 +1,17 @@
-﻿using RestAspNetCoreUdemy_Verbos.Model;
+﻿using RestAspNetCoreUdemy_Verbos.Data.VO;
 using System.Collections.Generic;
 
 namespace RestAspNetCoreUdemy_Verbos.Business
 {
     public interface IBookBusiness
     {
-        Book Create(Book book);
+        BookVO Create(BookVO book);
 
-        Book FindById(long Id);
+        BookVO FindById(long Id);
 
-        List<Book> FindAll();
+        List<BookVO> FindAll();
 
-        Book Update(Book book);
+        BookVO Update(BookVO book);
 
         void Delete(long Id);
 
