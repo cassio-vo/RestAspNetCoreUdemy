@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace RestAspNetCoreUdemy_Verbos.Data.VO
 {
+    [DataContract]
     public class BookVO
     {
+        [DataMember (Name = "Codigo")]
         public long? Id { get; set; }
 
         public string Author { get; set; }

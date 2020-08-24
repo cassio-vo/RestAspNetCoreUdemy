@@ -23,14 +23,14 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         }
 
         // GET: api/Books
-        [HttpGet(Name = "GetBook")]
+        [HttpGet]
         public IActionResult Get()
         {
             return Ok(_bookBusiness.FindAll());
         }
 
         // GET: api/Books/5
-        [HttpGet("{id}", Name = "GetBookById")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             return Ok(_bookBusiness.FindById(id));
