@@ -117,5 +117,9 @@ D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspN
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\obj\Debug\netcoreapp3.1\RestAspNetCoreUdemy_Verbos.csprojAssemblyReference.cache
+D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\obj\Debug\netcoreapp3.1\RestAspNetCoreUdemy_Verbos.MvcApplicationPartsAssemblyInfo.cs
 D:\Documents\ProjetoCore\RestAspNetCoreUdemy\RestAspNetCoreUdemy_Verbos\RestAspNetCoreUdemy_Verbos\obj\Debug\netcoreapp3.1\RestAspNetCoreUdemy_Verbos.MvcApplicationPartsAssemblyInfo.cache

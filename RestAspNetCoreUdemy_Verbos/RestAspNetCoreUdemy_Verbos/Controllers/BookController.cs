@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using RestAspNetCoreUdemy_Verbos.Business;
 using RestAspNetCoreUdemy_Verbos.Data.VO;
-using RestAspNetCoreUdemy_Verbos.Model;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace RestAspNetCoreUdemy_Verbos.Controllers
 {

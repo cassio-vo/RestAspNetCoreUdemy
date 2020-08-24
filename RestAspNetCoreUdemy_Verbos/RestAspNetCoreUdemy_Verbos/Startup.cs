@@ -13,6 +13,7 @@ using RestAspNetCoreUdemy_Verbos.Business;
 using RestAspNetCoreUdemy_Verbos.Business.Implmentations;
 using RestAspNetCoreUdemy_Verbos.Model.Context;
 using RestAspNetCoreUdemy_Verbos.Repository.Generic;
+using Microsoft.Net.Http.Headers;
 
 namespace RestAspNetCoreUdemy_Verbos
 {
@@ -55,6 +56,12 @@ namespace RestAspNetCoreUdemy_Verbos
                     throw;
                 }
             }
+
+            services.AddMvc(options => {
+                options.RespectBrowserAcceptHeader = true;
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            }).AddXmlSerializerFormatters();
 
             services.AddControllers();
             services.AddApiVersioning();
