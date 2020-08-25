@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace RestAspNetCoreUdemy_Verbos.Data.VO
 {
     [DataContract]
-    public class BookVO
+    public class BookVO : Recurso
     {
         [DataMember (Name = "Codigo")]
         public long? Id { get; set; }

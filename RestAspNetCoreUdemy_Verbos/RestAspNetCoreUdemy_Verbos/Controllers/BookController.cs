@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
 using RestAspNetCoreUdemy_Verbos.Business;
 using RestAspNetCoreUdemy_Verbos.Data.VO;
+using RestAspNetCoreUdemy_Verbos.HATEOAS;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -12,10 +17,12 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
     public class BookController : ControllerBase
     {
         IBookBusiness _bookBusiness;
+        private readonly LinkGenerator _linkGenerator;
 
-        public BookController(IBookBusiness bookBusiness)
+        public BookController(IBookBusiness bookBusiness, LinkGenerator generator)
         {
             _bookBusiness = bookBusiness;
+            _linkGenerator = generator;
         }
 
         // GET: api/Books
@@ -27,9 +34,9 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // GET: api/Books/5
         [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetBook(int id)
         {
-            return Ok(_bookBusiness.FindById(id));
+            return Ok(GerarLinks(_bookBusiness.FindById(id)));
         }
 
         // POST: api/Books
@@ -52,6 +59,14 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         {
             _bookBusiness.Delete(id);
             return NoContent();
+        }
+
+        private BookVO GerarLinks(BookVO book)
+        {
+            book.Links.Add(new LinkDTO(
+                _linkGenerator.GetUriByAction(HttpContext, nameof(GetBook), values: new { book.Id }),
+                rel: "self", metodo: "GET"));
+            return book;
         }
     }
 }

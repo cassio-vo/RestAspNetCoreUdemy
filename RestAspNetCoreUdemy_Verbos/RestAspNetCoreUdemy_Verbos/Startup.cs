@@ -14,6 +14,9 @@ using RestAspNetCoreUdemy_Verbos.Business.Implmentations;
 using RestAspNetCoreUdemy_Verbos.Model.Context;
 using RestAspNetCoreUdemy_Verbos.Repository.Generic;
 using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace RestAspNetCoreUdemy_Verbos
 {
