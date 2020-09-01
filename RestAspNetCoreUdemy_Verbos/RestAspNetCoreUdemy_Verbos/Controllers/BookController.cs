@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Routing;
 using RestAspNetCoreUdemy_Verbos.Business;
 using RestAspNetCoreUdemy_Verbos.Data.VO;
 using RestAspNetCoreUdemy_Verbos.HATEOAS;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace RestAspNetCoreUdemy_Verbos.Controllers
 {
@@ -27,13 +28,21 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // GET: api/Books
         [HttpGet]
+        [SwaggerResponse(200, Type = typeof(List<BookVO>))]
+        [SwaggerResponse(204)]
+        [SwaggerResponse(400)]
+        [SwaggerResponse(401)]
         public IActionResult Get()
         {
-            return Ok(_bookBusiness.FindAll());
+            return Ok(_bookBusiness.FindAll().Select(x => (BookVO)GetUrl.GerarLinks(
+                x,
+                nameof(Get),
+                this.HttpContext, _linkGenerator)));
         }
 
         // GET: api/Books/5
         [HttpGet("{id}")]
+        [SwaggerResponse(200, Type = typeof(BookVO))]
         public IActionResult GetBook(int id)
         {
             return Ok(GetUrl.GerarLinks(
@@ -44,6 +53,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // POST: api/Books
         [HttpPost( Name = "CreateBook")]
+        [SwaggerResponse(200, Type = typeof(BookVO))]
         public IActionResult Post([FromBody] BookVO book)
         {
             return Ok(_bookBusiness.Create(book));
@@ -51,6 +61,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // PUT: api/Books/5
         [HttpPut("{id}", Name = "UpdateBook")]
+        [SwaggerResponse(200, Type = typeof(BookVO))]
         public IActionResult Put(int id, [FromBody] BookVO book)
         {
             return Ok(_bookBusiness.Update(book));
@@ -58,6 +69,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
 
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}", Name = "DeleteBook")]
+        [SwaggerResponse(204)]
         public IActionResult Delete(int id)
         {
             _bookBusiness.Delete(id);

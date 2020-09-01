@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "htVzZ0D68FO23dfO03JkRzUhkVZdB0+5sO/H7RrDjjMyKkYy97cd417m1haWH3KwYUxMqJ349cVffPja5aQPCQ==",
+  "dgSpecHash": "0r/C5HppM7rjCOkC3V+6TxRhnlFxxAp3OgYMXdA4t58/9d4xyg3zDL658lY0B6RNkfS0S80si7Hk28eQhoF2eA==",
   "success": true,
   "projectFilePath": "D:\\Documents\\ProjetoCore\\RestAspNetCoreUdemy\\RestAspNetCoreUdemy_Verbos\\RestAspNetCoreUdemy_Verbos\\RestAspNetCoreUdemy_Verbos.csproj",
   "expectedPackageFiles": [
@@ -103,6 +103,7 @@
     "C:\\Users\\casvr\\.nuget\\packages\\ssh.net\\2016.1.0\\ssh.net.2016.1.0.nupkg.sha512",
     "C:\\Users\\casvr\\.nuget\\packages\\sshnet.security.cryptography\\1.2.0\\sshnet.security.cryptography.1.2.0.nupkg.sha512",
     "C:\\Users\\casvr\\.nuget\\packages\\swashbuckle.aspnetcore\\5.5.1\\swashbuckle.aspnetcore.5.5.1.nupkg.sha512",
+    "C:\\Users\\casvr\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\5.5.1\\swashbuckle.aspnetcore.annotations.5.5.1.nupkg.sha512",
     "C:\\Users\\casvr\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.5.1\\swashbuckle.aspnetcore.swagger.5.5.1.nupkg.sha512",
     "C:\\Users\\casvr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.5.1\\swashbuckle.aspnetcore.swaggergen.5.5.1.nupkg.sha512",
     "C:\\Users\\casvr\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.5.1\\swashbuckle.aspnetcore.swaggerui.5.5.1.nupkg.sha512",
