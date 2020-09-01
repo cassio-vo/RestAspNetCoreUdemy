@@ -14,9 +14,8 @@ using RestAspNetCoreUdemy_Verbos.Business.Implmentations;
 using RestAspNetCoreUdemy_Verbos.Model.Context;
 using RestAspNetCoreUdemy_Verbos.Repository.Generic;
 using Microsoft.Net.Http.Headers;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestAspNetCoreUdemy_Verbos
 {
@@ -56,7 +55,7 @@ namespace RestAspNetCoreUdemy_Verbos
                 }
                 catch (Exception ex)
                 {
-                    throw;
+                    throw ex;
                 }
             }
 
@@ -68,6 +67,22 @@ namespace RestAspNetCoreUdemy_Verbos
 
             services.AddControllers();
             services.AddApiVersioning();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "Api Cassio",
+                    Description = "Exemplo de ASP.NET Core Web API",
+                    TermsOfService = new Uri("https://example.com/terms"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Cassio de Vargas Oliveira",
+                        Email = "cassio_de_vargas@yahoo.com.br"
+                    }
+                });
+            });
 
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation> ();
@@ -93,6 +108,16 @@ namespace RestAspNetCoreUdemy_Verbos
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c=> {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minha API v1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
             app.UseEndpoints(endpoints =>
             {
