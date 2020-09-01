@@ -36,7 +36,10 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         [HttpGet("{id}")]
         public IActionResult GetBook(int id)
         {
-            return Ok(GerarLinks(_bookBusiness.FindById(id)));
+            return Ok(GetUrl.GerarLinks(
+                _bookBusiness.FindById(id),
+                nameof(GetBook), 
+                this.HttpContext, _linkGenerator));
         }
 
         // POST: api/Books
@@ -59,14 +62,6 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
         {
             _bookBusiness.Delete(id);
             return NoContent();
-        }
-
-        private BookVO GerarLinks(BookVO book)
-        {
-            book.Links.Add(new LinkDTO(
-                _linkGenerator.GetUriByAction(HttpContext, nameof(GetBook), values: new { book.Id }),
-                rel: "self", metodo: "GET"));
-            return book;
         }
     }
 }

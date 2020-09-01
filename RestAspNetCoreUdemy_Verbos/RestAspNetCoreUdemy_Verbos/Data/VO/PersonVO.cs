@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace RestAspNetCoreUdemy_Verbos.Data.VO
 {
-    public class PersonVO
+    public class PersonVO : Recurso
     {
-        public long? Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

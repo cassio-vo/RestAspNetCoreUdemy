@@ -9,9 +9,6 @@ namespace RestAspNetCoreUdemy_Verbos.Data.VO
     [DataContract]
     public class BookVO : Recurso
     {
-        [DataMember (Name = "Codigo")]
-        public long? Id { get; set; }
-
         public string Author { get; set; }
 
         public DateTime LaunchDate { get; set; }

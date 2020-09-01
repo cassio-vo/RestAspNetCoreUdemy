@@ -8,7 +8,7 @@ namespace RestAspNetCoreUdemy_Verbos.Data.VO
 {
     public class Recurso
     {
+        public long? Id { get; set; }
         public List<LinkDTO> Links { get; set; } = new List<LinkDTO>();
-
     }
 }
