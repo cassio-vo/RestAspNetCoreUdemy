@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
@@ -15,6 +16,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
     [Route("api/[controller]/v{version:apiversion}")]
     [ApiVersion("1")]
     [ApiController]
+    [Authorize("Bearer")]
     public class BookController : ControllerBase
     {
         IBookBusiness _bookBusiness;

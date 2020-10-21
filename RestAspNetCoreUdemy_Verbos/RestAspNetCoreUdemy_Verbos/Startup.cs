@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using Microsoft.Extensions.Configuration;
@@ -16,6 +16,12 @@ using RestAspNetCoreUdemy_Verbos.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Rewrite;
+using RestAspNetCoreUdemy_Verbos.Repository.Implementations;
+using RestAspNetCoreUdemy_Verbos.Repository;
+using RestAspNetCoreUdemy_Verbos.Security.Configuration;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RestAspNetCoreUdemy_Verbos
 {
@@ -59,6 +65,51 @@ namespace RestAspNetCoreUdemy_Verbos
                 }
             }
 
+            var signingConfigurations = new SigningConfigurations();
+            services.AddSingleton(signingConfigurations);
+
+            var tokenConfigurations = new TokenConfiguration();
+
+            new ConfigureFromConfigurationOptions<TokenConfiguration>(
+                _configuration.GetSection("TokenConfigurations")
+            )
+            .Configure(tokenConfigurations);
+
+            services.AddSingleton(tokenConfigurations);
+
+
+            services.AddAuthentication(authOptions =>
+            {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearerOptions =>
+            {
+                var paramsValidation = bearerOptions.TokenValidationParameters;
+                paramsValidation.IssuerSigningKey = signingConfigurations.Key;
+                paramsValidation.ValidAudience = tokenConfigurations.Audience;
+                paramsValidation.ValidIssuer = tokenConfigurations.Issuer;
+
+                // Validates the signing of a received token
+                paramsValidation.ValidateIssuerSigningKey = true;
+
+                // Checks if a received token is still valid
+                paramsValidation.ValidateLifetime = true;
+
+                // Tolerance time for the expiration of a token (used in case
+                // of time synchronization problems between different
+                // computers involved in the communication process)
+                paramsValidation.ClockSkew = TimeSpan.Zero;
+            });
+
+            // Enables the use of the token as a means of
+            // authorizing access to this project's resources
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme‌​)
+                    .RequireAuthenticatedUser().Build());
+            });
+
             services.AddMvc(options => {
                 options.RespectBrowserAcceptHeader = true;
                 options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
@@ -83,6 +134,10 @@ namespace RestAspNetCoreUdemy_Verbos
                     }
                 });
             });
+
+            services.AddScoped<IUserRepository, UserRepositoryImp>();
+
+            services.AddScoped<ILoginBusiness, LoginBusinessImplementation>();
 
             services.AddScoped<IPersonBusiness, PersonBusinessImplementation>();
             services.AddScoped<IBookBusiness, BookBusinessImplementation> ();

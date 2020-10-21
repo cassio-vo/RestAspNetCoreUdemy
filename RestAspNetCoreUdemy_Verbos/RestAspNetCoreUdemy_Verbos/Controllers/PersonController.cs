@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestAspNetCoreUdemy_Verbos.Business;
 using RestAspNetCoreUdemy_Verbos.Data.VO;
 
@@ -7,6 +8,7 @@ namespace RestAspNetCoreUdemy_Verbos.Controllers
     [Route("api/[controller]/v{version:apiversion}")]
     [ApiVersion("1")]
     [ApiController]
+    [Authorize("Bearer")]
     public class PersonController : ControllerBase
     {
         IPersonBusiness _personBusiness;
